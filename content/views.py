@@ -5,11 +5,12 @@ from .serializers import CNABSerializer
 
 from .models import Formulario_CNAB
 
+
 class fazerUpload(APIView):
 
     def get(self, request):
         listaCompleta = Formulario_CNAB.objects.all()
-        serializer = CNABSerializer(listaCompleta, many = True)
+        serializer = CNABSerializer(listaCompleta, many=True)
         return Response(serializer.data)
 
     def post(self, request):
@@ -79,8 +80,8 @@ class fazerUpload(APIView):
                                   "dono_nome": dono_nome, "nome_loja": nome_loja,
                                   "natureza": natureza, "sinal": sinal}
 
-            Serializer = CNABSerializer(data= dados_da_transasao)
+            Serializer = CNABSerializer(data=dados_da_transasao)
             Serializer.is_valid(raise_exception=True)
             Serializer.save()
 
-        return Response({"mensagen":"sucesso dados foram colocados no banco"})
+        return Response({"mensagen": "sucesso dados foram colocados no banco"})

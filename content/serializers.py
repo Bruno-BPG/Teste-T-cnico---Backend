@@ -10,7 +10,7 @@ class CNABSerializer(serializers.Serializer):
 
     natureza = serializers.CharField()
     sinal = serializers.CharField()
-    
+
     valor = serializers.CharField()
     cpf = serializers.CharField()
     cartao = serializers.CharField()
@@ -20,6 +20,7 @@ class CNABSerializer(serializers.Serializer):
 
     def create(self, validated_data):
 
-        criar_formulario = Formulario_CNAB.objects.get_or_create(**validated_data)
+        criar_formulario = Formulario_CNAB.objects.get_or_create(
+            **validated_data)
 
-        return {"mensagen":"foi um sucesso"}
+        return {"mensagen": "foi um sucesso"}
