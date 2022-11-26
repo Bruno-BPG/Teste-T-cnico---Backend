@@ -3,7 +3,14 @@ from rest_framework.views import APIView, Response
 from .serializers import CNABSerializer
 #  autopep8
 
+from .models import Formulario_CNAB
+
 class fazerUpload(APIView):
+
+    def get(self, request):
+        listaCompleta = Formulario_CNAB.objects.all()
+        serializer = CNABSerializer(listaCompleta, many = True)
+        return Response(serializer.data)
 
     def post(self, request):
         arquivo = request.FILES["file"]
